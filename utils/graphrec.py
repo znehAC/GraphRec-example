@@ -543,6 +543,11 @@ def get_data100k():
     df_test = df[split_index:].reset_index(drop=True)
     return df_train, df_test
 
+
+'''
+HYPERPARAMETROS do modelo
+'''
+
 DEVICE="/cpu:0"
 
 ############# ML 100k dataset ###########
