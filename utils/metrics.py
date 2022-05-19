@@ -14,7 +14,7 @@ def ndcg(y_true, y_score, k=10):
     best_dcg = dcg(y_true, y_true, k)
     if best_dcg != 0:
         return  (float(dcg_score) / float(best_dcg))
-    return dcg
+    return dcg_score
 
 def get_groups(qids):
         prev_qid = None
