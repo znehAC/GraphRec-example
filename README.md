@@ -28,7 +28,7 @@ O dataset u.user, no exemplo do movielens100k contem as colunas [id_usuario, ida
 	[2, 53, F, other, 94043]
 	[49, 23, F, student, 76111]
 
-O u.item possui as colunas [id_item, titulo_filme, data_lançamento, data_lançamento_video, url_IMDB, categoria1, categoria2, ..., categoria19], sendo o id do item e as colunas onde tem os valores 1 ou 0, indicando se possui ou nao a categoria. Exemplo:
+O u.item possui as colunas [id_item, titulo_filme, data_lançamento, data_lançamento_video, url_IMDB, categoria1, categoria2, ..., categoria19], sendo o id do item e as colunas de categoria onde tem os valores 1 ou 0, indicando se possui ou nao a categoria. Exemplo:
 
 	[1, 'Toy Story (1995)', 01-Jan-1995, null, http://us.imdb.com/M/title-exact?Toy%20Story%20(1995), 0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
 	[254, 'Batman & Robin (1997)', 20-Jun-1997, null, http://us.imdb.com/M/title-exact?Batman+%26+Robin+(1997), 0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0]
