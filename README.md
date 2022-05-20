@@ -20,7 +20,7 @@ O link original do código pode ser encontrado em: https://github.com/ahmedrashe
 
 ## Execução
 
-O método precisa receber um dataset ([data/u.data](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k)) que contêm relações de item (id), usuário (id) e a relevância atribuída do item para o usuário. Considerando a estratégia do artigo de inclusão de atributos de usuários e itens para obtenção dos vetores latentes, faz-se necessário carregar os respectivos dados [data/u.user](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k) e [data/u.item](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k), contendo maiores detalhes.
+O método precisa receber um dataset ([data/u.data](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k)) que contêm relações de item (id), usuário (id) e a relevância atribuída do item para o usuário. Considerando a estratégia do artigo de inclusão de atributos de usuários e itens para obtenção dos vetores latentes, faz-se necessário carregar os respectivos dados [data/u.user](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k) e [data/u.item](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k).
 
 Para utilização de outro dataset, é preciso modificar no código a leitura das features externas. Exemplo:
 
