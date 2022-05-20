@@ -22,6 +22,13 @@ O link original do código pode ser encontrado em: https://github.com/ahmedrashe
 
 O método precisa receber um dataset ([data/u.data](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k)) que contêm relações de item (id), usuário (id) e a relevância atribuída do item para o usuário. Considerando a estratégia do artigo de inclusão de atributos de usuários e itens para obtenção dos vetores latentes, faz-se necessário carregar os respectivos dados [data/u.user](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k) e [data/u.item](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k).
 
+O u.data tem as colunas [id_usuario, id_item , avaliação , tempo]. Exemplo:
+
+	[196, 242, 3, 881250949]
+	[115, 265, 2, 881171488]
+	[308, 1, 4, 887736532]
+
+
 O dataset u.user, no exemplo do movielens100k contém as colunas [id_usuario, idade, genero, ocupacao, zipcode]. Exemplo:
 
 	[1, 24, M, technician, 85711]
@@ -33,11 +40,6 @@ O u.item possui as colunas [id_item, titulo_filme, data_lançamento, data_lança
 	[1, 'Toy Story (1995)', 01-Jan-1995, null, http://us.imdb.com/M/title-exact?Toy%20Story%20(1995), 0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
 	[254, 'Batman & Robin (1997)', 20-Jun-1997, null, http://us.imdb.com/M/title-exact?Batman+%26+Robin+(1997), 0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0]
 
-O u.data tem as colunas [id_usuario, id_item , avaliação , tempo]. Exemplo:
-
-	[196, 242, 3, 881250949]
-	[115, 265, 2, 881171488]
-	[308, 1, 4, 887736532]
 
 Para utilização de outro dataset, é preciso implementar um método que carregue seus dados. Exemplo:
 
