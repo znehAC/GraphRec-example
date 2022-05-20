@@ -1,6 +1,6 @@
 # Sobre o repositório
 Esse repositório atende a uma das atividades do Projeto de PIBIT/IFG intitulado: "Aplicação de Modelos Supervisionados para Sistemas de Recomendação em Instituições de Pesquisa Científica." O projeto faz parte do Grupo de Pesquisa GECOMP, do Bacharelado em Ciência da Computação do IFG e é orientado pelo professor Dr. Daniel Xavier de Sousa.
-O objetivo desta atividade é descrever o passo-a-passo de como utilizar o método GraphRec, considerado atualmente o estado da arte em Sistemas de Recomendação para abordagens híbridas. Para melhor descrição, utilizamos a base de dados [MovieLens 100k](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k).
+O objetivo desta atividade é descrever o passo-a-passo de como utilizar o método GraphRec, considerado atualmente o estado da arte em Sistemas de Recomendação para abordagens de Filtragem Colaborativa. Para melhor descrição, utilizamos a base de dados [MovieLens 100k](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k).
 
 ## GraphRec
 O GraphRec é um método de Sistemas de Recomendação com Filtragem Colaborativa que leva em conta os atributos dos usuários e dos itens, utilizando de uma técnica similar à matriz de fatoração, mas com a aplicação de Redes Neurais e a construção de atributos latentes não-lineares que podem absorver características dos usuários ou dos itens, ou até mesmo de ambos. Os vetores latentes podem então ser combinados para conseguir a predição das avaliações e uma relação item-usuário.
@@ -22,7 +22,7 @@ O link original do código pode ser encontrado em: https://github.com/ahmedrashe
 
 O método precisa receber um dataset ([data/u.data](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k)) que contêm relações de item (id), usuário (id) e a relevância atribuída do item para o usuário. Considerando a estratégia do artigo de inclusão de atributos de usuários e itens para obtenção dos vetores latentes, faz-se necessário carregar os respectivos dados [data/u.user](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k) e [data/u.item](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k).
 
-O dataset u.user, no exemplo do movielens100k contem as colunas [id_usuario, idade, genero, ocupacao, zipcode]. Exemplo:
+O dataset u.user, no exemplo do movielens100k contém as colunas [id_usuario, idade, genero, ocupacao, zipcode]. Exemplo:
 
 	[1, 24, M, technician, 85711]
 	[2, 53, F, other, 94043]
@@ -32,6 +32,12 @@ O u.item possui as colunas [id_item, titulo_filme, data_lançamento, data_lança
 
 	[1, 'Toy Story (1995)', 01-Jan-1995, null, http://us.imdb.com/M/title-exact?Toy%20Story%20(1995), 0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
 	[254, 'Batman & Robin (1997)', 20-Jun-1997, null, http://us.imdb.com/M/title-exact?Batman+%26+Robin+(1997), 0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0]
+
+O u.data tem as colunas [id_usuario, id_item , avaliação , tempo]. Exemplo:
+
+	[196, 242, 3, 881250949]
+	[115, 265, 2, 881171488]
+	[308, 1, 4, 887736532]
 
 Para utilização de outro dataset, é preciso implementar um método que carregue seus dados. Exemplo:
 
@@ -63,9 +69,7 @@ E modificar o código para chamar o método e adicionar os atributos. Exemplo:
 
 
 ### Codigo
-Para treinar o modelo carregamos o dataset que contem os id's de usuario e de item e o rating de cada relacao,
-Para utilizar as features de usuario e de item o loading delas é feita no proprio código do graphrec.
-Essa funcao carrega os dados e separa em 90% para treino e 10% de teste.
+Os dados das relações entre item e usuário são carregados e divididos em treino e teste. No exemplo abaixo 90% dos dados são separados para o treino, enquanto os 10% restante serão utilizados para teste.
 
 	df_train, df_test = get_data100k() 
 	# Retorna o dataset data.u dividido em treino e teste
@@ -93,11 +97,10 @@ Treinando o modelo podemos selecionar se vai ser usado dados do usuario(UserData
 
 Para avaliação do modelo foi separado os ids dos usuarios como id de consultas e a nota como a label.
 
-	df_test = df_test.sort_values('user') 
-	qids = df_test['user'] 					
-	y_test = df_test['rate'] 				
-	predictions = np.array(model.predict(df_test)).flatten()
-	
+	df_test = df_test.sort_values('user') 	# retorna o dataset de treino ordenado com base nos ids
+	qids = df_test['user'] 					# qids sao os ids dos usuarios
+	y_test = df_test['rate'] 				# y_test sao os scores verdadeiros do teste
+	predictions = np.array(model.predict(df_test)).flatten() # model.predict(df_test) retorna as predicoes, .flatten() muda os dados para lista de int
 
 Após conseguir as predições, só passar para uma métrica como ndcg ou rmse.
 
