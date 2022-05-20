@@ -3,7 +3,7 @@ Esse repositório atende a uma das atividades do Projeto de PIBIT/IFG intitulado
 O objetivo desta atividade é descrever o passo-a-passo de como utilizar o método GraphRec, considerado atualmente o estado da arte em Sistemas de Recomendação para abordagens híbridas. Para melhor descrição, utilizamos a base de dados [MovieLens 100k](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k).
 
 ## GraphRec
-O GraphRec é um algoritmo de recomendação que leva em conta atributos dos usuários e dos itens, utilizando de uma técnica similar à matriz de fatoração, mas com a construção de features latentes não-lineares que podem absorver caracteristicas dos usuários ou dos itens, ou até mesmo de ambos, onde é a graph feature. Os vetores latentes podem então ser combinados para conseguir o rating de uma relação item-usuário.
+O GraphRec é um método de Sistemas de Recomendação com Filtragem Colaborativa que leva em conta os atributos dos usuários e dos itens, utilizando de uma técnica similar à matriz de fatoração, mas com a aplicação de Redes Neurais e a construção de atributos latentes não-lineares que podem absorver características dos usuários ou dos itens, ou até mesmo de ambos. Os vetores latentes podem então ser combinados para conseguir a predição das avaliações e uma relação item-usuário.
 
 O método é apresentado em: [Rashed, Ahmed, Josif Grabocka, and Lars Schmidt-Thieme. "Attribute-aware non-linear co-embeddings of graph features."13th ACM Conference on Recommender Systems (RecSys). 2019.](https://www.ismll.uni-hildesheim.de/pub/pdfs/Ahmed_RecSys19.pdf)
 
