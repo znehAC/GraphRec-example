@@ -117,7 +117,7 @@ Também de acordo com cada dataset, é preciso alterar os seguintes parâmetros:
 
 sem graph features com external features 
 
-      model = GraphRec(df_train, df_test, ItemData= False, UserData = False, Graph=False, Dataset='100k')
+      model = GraphRec(df_train, df_test, ItemData= True, UserData = True, Graph=False, Dataset='100k')
 
       mean ndcg: 0.8944496166257601
       rmse: 0.8958193504345224
@@ -131,14 +131,14 @@ sem graph features sem external features
 
 com graph features com external features
 
-      model = GraphRec(df_train, df_test, ItemData= False, UserData = False, Graph=False, Dataset='100k')
+      model = GraphRec(df_train, df_test, ItemData= True, UserData = True, Graph=True, Dataset='100k')
 
       mean ndcg: 0.8985257081563411
       rmse: 0.8853696390671398
 
 com graph features sem external features 
 
-      model = GraphRec(df_train, df_test, ItemData= False, UserData = False, Graph=False, Dataset='100k')
+      model = GraphRec(df_train, df_test, ItemData= False, UserData = False, Graph=True, Dataset='100k')
 
       mean ndcg: 0.8977134940003574
       rmse: 0.8990311527796113
