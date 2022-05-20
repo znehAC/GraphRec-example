@@ -22,24 +22,18 @@ O link original do código pode ser encontrado em: https://github.com/ahmedrashe
 
 O método precisa receber um dataset ([data/u.data](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k)) que contêm relações de item (id), usuário (id) e a relevância atribuída do item para o usuário. Considerando a estratégia do artigo de inclusão de atributos de usuários e itens para obtenção dos vetores latentes, faz-se necessário carregar os respectivos dados [data/u.user](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k) e [data/u.item](https://github.com/znehAC/GraphRec-example/tree/master/data/ml100k).
 
-O dataset u.user, no exemplo do movielens100k contem as colunas [id_usuario, idade, genero, ocupacao, zipcode];
+O dataset u.user, no exemplo do movielens100k contem as colunas [id_usuario, idade, genero, ocupacao, zipcode]. Exemplo:
 
-O u.item possui as colunas [id_item, categoria1, categoria2, ..., categoria19], sendo o id do item e as colunas onde tem os valores 1 ou 0, indicando se possui ou nao a categoria.
+	[1, 24, M, technician, 85711]
+	[2, 53, F, other, 94043]
+	[49, 23, F, student, 76111]
 
-Para utilização de outro dataset, é preciso modificar no código a leitura dos atributos externos. Exemplo:
+O u.item possui as colunas [id_item, titulo_filme, data_lançamento, data_lançamento_video, url_IMDB, categoria1, categoria2, ..., categoria19], sendo o id do item e as colunas onde tem os valores 1 ou 0, indicando se possui ou nao a categoria. Exemplo:
 
-	if(UserData):
-      if(Dataset=='100k'):
-        UsrDat=get_UserData100k()
-      UserFeatures=np.concatenate((UserFeatures,UsrDat), axis=1) 
+	[1, 'Toy Story (1995)', 01-Jan-1995, null, http://us.imdb.com/M/title-exact?Toy%20Story%20(1995), 0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
+	[254, 'Batman & Robin (1997)', 20-Jun-1997, null, http://us.imdb.com/M/title-exact?Batman+%26+Robin+(1997), 0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0]
 
-    if(ItemData):
-      if(Dataset=='100k'):
-        ItmDat=get_ItemData100k()
-	  ItemFeatures=np.concatenate((ItemFeatures,ItmDat), axis=1) 
-
-	linha 158
-E implementar um método que carregue seus dados. Exemplo:
+Para utilização de outro dataset, é preciso implementar um método que carregue seus dados. Exemplo:
 
 	def get_UserData100k():
 		col_names = ["user", "age", "gender", "occupation","PostCode"]
@@ -52,6 +46,21 @@ E implementar um método que carregue seus dados. Exemplo:
 		return df.values
 	
 	linha 459
+
+E modificar o código para chamar o método e adicionar os atributos. Exemplo:
+
+	if(UserData):
+	    if(Dataset=='100k'):
+	      	UsrDat=get_UserData100k()
+	    UserFeatures=np.concatenate((UserFeatures,UsrDat), axis=1) 
+	if(ItemData):
+	    if(Dataset=='100k'):
+			ItmDat=get_ItemData100k()
+	    ItemFeatures=np.concatenate((ItemFeatures,ItmDat), axis=1) 
+
+	linha 158
+
+
 
 ### Codigo
 Para treinar o modelo carregamos o dataset que contem os id's de usuario e de item e o rating de cada relacao,
@@ -121,20 +130,6 @@ sem graph features com external features
 
       mean ndcg: 0.8944496166257601
       rmse: 0.8958193504345224
-
-sem graph features sem external features
-
-      model = GraphRec(df_train, df_test, ItemData= False, UserData = False, Graph=False, Dataset='100k')
-
-      mean ndcg: 0.8910245956442313
-      rmse: 0.8935640035558002
-
-com graph features com external features
-
-      model = GraphRec(df_train, df_test, ItemData= True, UserData = True, Graph=True, Dataset='100k')
-
-      mean ndcg: 0.8985257081563411
-      rmse: 0.8853696390671398
 
 com graph features sem external features 
 
